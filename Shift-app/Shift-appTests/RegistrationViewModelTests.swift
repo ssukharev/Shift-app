@@ -55,7 +55,7 @@ final class RegistrationViewModelTests: XCTestCase {
         XCTAssertNil(viewModel.firstNameError)
     }
     
-    // MARK: - Last Name Tests
+    // MARK: - Тесты фамилии
     
     func testLastNameValidation_EmptyName_ShouldFail() {
         viewModel.lastName = ""
@@ -80,7 +80,7 @@ final class RegistrationViewModelTests: XCTestCase {
         XCTAssertNil(viewModel.lastNameError)
     }
     
-    // MARK: - Birth Date Tests
+    // MARK: - Тесты с датой рождения
     
     func testBirthDateValidation_FutureDate_ShouldFail() {
         let futureDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
@@ -108,7 +108,7 @@ final class RegistrationViewModelTests: XCTestCase {
         XCTAssertNil(viewModel.birthDateError)
     }
     
-    // MARK: - Password Tests
+    // MARK: - Тесты с валидацией пароля
     
     func testPasswordValidation_EmptyPassword_ShouldFail() {
         viewModel.password = ""
@@ -157,7 +157,7 @@ final class RegistrationViewModelTests: XCTestCase {
         XCTAssertNil(viewModel.passwordError)
     }
     
-    // MARK: - Confirm Password Tests
+    // MARK: - Тесты с подтверждением пароля
     
     func testConfirmPasswordValidation_Empty_ShouldFail() {
         viewModel.password = "Password123"
@@ -185,7 +185,7 @@ final class RegistrationViewModelTests: XCTestCase {
         XCTAssertNil(viewModel.confirmPasswordError)
     }
     
-    // MARK: - Form Validation Tests
+    // MARK: - Тесты с валидацией формы
     
     func testFormValidation_AllFieldsValid_ShouldReturnTrue() {
         viewModel.firstName = "John"
@@ -207,7 +207,7 @@ final class RegistrationViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.isFormValid)
     }
     
-    // MARK: - Registration Tests
+    // MARK: - Тесты с регистрацией
     
     func testRegistration_ValidData_ShouldSaveUser() {
         viewModel.firstName = "John"

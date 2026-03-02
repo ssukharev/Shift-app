@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-// MARK: - ViewModel для экрана регистрации
+// MARK: - Экран регистрации
 /// Управляет состоянием формы регистрации и валидацией полей
 final class RegistrationViewModel: ObservableObject {
     // Поля ввода
@@ -32,7 +32,7 @@ final class RegistrationViewModel: ObservableObject {
     
     // MARK: - Методы валидации (с установкой ошибок)
     
-    /// Валидирует имя и устанавливает сообщение об ошибке при необходимости
+    // Валидируем имя и устанавливаем сообщение об ошибке при необходимости
     private func validateFirstName() -> Bool {
         firstNameError = nil
         
@@ -54,7 +54,7 @@ final class RegistrationViewModel: ObservableObject {
         return true
     }
     
-    /// Валидирует фамилию и устанавливает сообщение об ошибке при необходимости
+    // Валидируем фамилию и устанавливаем сообщение об ошибке при необходимости
     private func validateLastName() -> Bool {
         lastNameError = nil
         
@@ -76,7 +76,7 @@ final class RegistrationViewModel: ObservableObject {
         return true
     }
     
-    /// Валидирует дату рождения (возраст от 18 до 120 лет)
+    // Валидируем дату рождения (возраст от 18 до 120 лет)
     private func validateBirthDate() -> Bool {
         birthDateError = nil
         
@@ -107,7 +107,7 @@ final class RegistrationViewModel: ObservableObject {
         return true
     }
     
-    /// Валидирует пароль (минимум 8 символов, заглавные, строчные буквы и цифры)
+    // Валидируем пароль (минимум 8 символов, заглавные, строчные буквы и цифры)
     private func validatePassword() -> Bool {
         passwordError = nil
         
@@ -143,7 +143,7 @@ final class RegistrationViewModel: ObservableObject {
         return true
     }
     
-    /// Валидирует подтверждение пароля (должно совпадать с основным паролем)
+    // Валидируем подтверждение пароля (должно совпадать с основным паролем)
     private func validateConfirmPassword() -> Bool {
         confirmPasswordError = nil
         
@@ -160,8 +160,6 @@ final class RegistrationViewModel: ObservableObject {
         return true
     }
     
-    // MARK: - Публичные методы
-    
     /// Проверяет валидность всей формы
     /// Используется для активации/деактивации кнопки регистрации
     var isFormValid: Bool {
@@ -172,9 +170,8 @@ final class RegistrationViewModel: ObservableObject {
                isConfirmPasswordValid
     }
     
-    // MARK: - Проверки валидности (без побочных эффектов)
+    // MARK: - Проверки валидности
     // Эти методы только проверяют данные, не изменяя состояние
-    // Используются для isFormValid, чтобы избежать изменений состояния во время рендеринга
     
     private var isFirstNameValid: Bool {
         return !firstName.isEmpty &&
@@ -213,8 +210,8 @@ final class RegistrationViewModel: ObservableObject {
                password == confirmPassword
     }
     
-    /// Выполняет регистрацию пользователя
-    /// Сохраняет данные в UserDefaults и устанавливает флаг успешной регистрации
+    // Выполняем регистрацию пользователя
+    // Сохраняем данные в UserDefaults и устанавливаем флаг успешной регистрации
     func register() {
         guard isFormValid else { return }
         
@@ -228,8 +225,7 @@ final class RegistrationViewModel: ObservableObject {
         isRegistrationSuccessful = true
     }
     
-    /// Валидирует конкретное поле и устанавливает сообщение об ошибке
-    /// Вызывается при изменении значения поля (onChange)
+    // Валидируем конкретное поле и устанавливаем сообщение об ошибке
     func validateField(_ field: RegistrationField) {
         switch field {
         case .firstName:

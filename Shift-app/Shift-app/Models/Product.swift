@@ -7,17 +7,16 @@
 
 import Foundation
 
-// MARK: - Модель продукта
-/// Структура для хранения информации о продукте из API
+//Структура-модель продукта
 struct Product: Identifiable, Codable {
-    let id: Int                // Уникальный идентификатор
-    let title: String          // Название продукта
-    let price: Double          // Цена
-    let description: String    // Описание
-    let category: String       // Категория товара
-    let image: String          // URL изображения
+    let id: Int
+    let title: String
+    let price: Double
+    let description: String
+    let category: String
+    let image: String
     
-    /// Форматированная цена в долларах
+    //Цена
     var priceFormatted: String {
         return String(format: "$%.2f", price)
     }

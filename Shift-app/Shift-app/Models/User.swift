@@ -7,14 +7,12 @@
 
 import Foundation
 
-// MARK: - Модель пользователя
-/// Структура для хранения данных зарегистрированного пользователя
+//Структура для пользователя
 struct User: Codable {
-    let firstName: String    // Имя
-    let lastName: String     // Фамилия
-    let birthDate: Date      // Дата рождения
+    let firstName: String
+    let lastName: String
+    let birthDate: Date
     
-    /// Полное имя пользователя (имя + фамилия)
     var fullName: String {
         return "\(firstName) \(lastName)"
     }

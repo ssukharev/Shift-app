@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: - Экран регистрации
-/// Форма для регистрации нового пользователя с валидацией полей
+// Форма для регистрации нового пользователя с валидацией полей
 struct RegistrationView: View {
     @StateObject private var viewModel = RegistrationViewModel()
     

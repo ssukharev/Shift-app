@@ -7,33 +7,30 @@
 
 import Foundation
 
-// MARK: - ViewModel главного экрана
-/// Управляет загрузкой и отображением списка продуктов
+// MARK: - Главный экран
 @MainActor
 final class MainViewModel: ObservableObject {
     // Состояние экрана
     @Published var products: [Product] = []          // Список продуктов
     @Published var isLoading: Bool = false           // Флаг загрузки
     @Published var errorMessage: String?             // Сообщение об ошибке
-    @Published var showGreeting: Bool = false        // Показывать ли модальное окно приветствия
+    @Published var showGreeting: Bool = false        // Показывать ли окно приветствия
     
     private let networkService = NetworkService.shared
     private let userStorage = UserStorageService.shared
     
-    /// Имя текущего пользователя из хранилища
+    // Имя текущего пользователя из хранилища
     var userName: String {
         return userStorage.loadUser()?.firstName ?? "Гость"
     }
     
-    /// Сообщение приветствия для пользователя
+    // Сообщение приветствия для пользователя
     var greetingMessage: String {
         return "Привет, \(userName)!"
     }
     
-    // MARK: - Публичные методы
-    
-    /// Загружает список продуктов с сервера
-    /// Обрабатывает ошибки и обновляет UI соответственно
+    // Загружаем список продуктов с сервера
+    // Обрабатываем ошибки и обновляем UI соответственно
     func fetchProducts() async {
         isLoading = true
         errorMessage = nil
@@ -43,7 +40,6 @@ final class MainViewModel: ObservableObject {
             isLoading = false
         } catch let error as NetworkError {
             isLoading = false
-            // Обрабатываем различные типы ошибок
             switch error {
             case .invalidURL:
                 errorMessage = "Некорректный URL"
@@ -60,7 +56,6 @@ final class MainViewModel: ObservableObject {
         }
     }
     
-    /// Переключает отображение модального окна приветствия
     func toggleGreeting() {
         showGreeting.toggle()
     }

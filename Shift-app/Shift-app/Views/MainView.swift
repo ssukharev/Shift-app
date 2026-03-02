@@ -99,7 +99,7 @@ struct MainView: View {
 }
 
 // MARK: - Ячейка продукта
-/// Отображает информацию о продукте в списке
+// Отображаем информацию о продукте в списке
 struct ProductRowView: View {
     let product: Product
     
@@ -151,8 +151,8 @@ struct ProductRowView: View {
     }
 }
 
-// MARK: - Модальное окно приветствия
-/// Отображает приветственное сообщение для пользователя
+// MARK: - Окно приветствия
+// Отображаем приветственное сообщение для пользователя
 struct GreetingView: View {
     let message: String
     @Environment(\.dismiss) var dismiss

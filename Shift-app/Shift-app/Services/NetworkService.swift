@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Типы ошибок сети
 enum NetworkError: Error {
     case invalidURL           // Некорректный URL
     case noData              // Нет данных
@@ -15,17 +14,15 @@ enum NetworkError: Error {
     case serverError(String) // Ошибка сервера
 }
 
-// MARK: - Сервис для работы с сетью
-/// Отвечает за все сетевые запросы в приложении
+// MARK: - Работа с сетью
 final class NetworkService {
     static let shared = NetworkService()
     
     private init() {}
     
-    /// Загружает список продуктов с FakeStore API
-    /// - Returns: Массив продуктов
-    /// - Throws: NetworkError в случае ошибки
+    // Загружает список продуктов с FakeStore API
     func fetchProducts() async throws -> [Product] {
+        
         // Проверяем валидность URL
         guard let url = URL(string: "https://fakestoreapi.com/products") else {
             throw NetworkError.invalidURL
@@ -34,7 +31,6 @@ final class NetworkService {
         // Выполняем запрос
         let (data, response) = try await URLSession.shared.data(from: url)
         
-        // Проверяем статус код ответа
         guard let httpResponse = response as? HTTPURLResponse,
               (200...299).contains(httpResponse.statusCode) else {
             throw NetworkError.serverError("Server returned error")

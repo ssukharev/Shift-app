@@ -7,8 +7,8 @@
 
 import Foundation
 
-// MARK: - Сервис для работы с хранилищем пользователя
-/// Отвечает за сохранение и загрузку данных пользователя из UserDefaults
+// MARK: - Работа с данными пользователя
+// Отвечает за сохранение и загрузку данных пользователя из UserDefaults
 final class UserStorageService {
     static let shared = UserStorageService()
     
@@ -17,15 +17,14 @@ final class UserStorageService {
     
     private init() {}
     
-    /// Сохраняет данные пользователя в UserDefaults
+    // Сохраняет данные пользователя в UserDefaults
     func saveUser(_ user: User) {
         if let encoded = try? JSONEncoder().encode(user) {
             defaults.set(encoded, forKey: userKey)
         }
     }
     
-    /// Загружает данные пользователя из UserDefaults
-    /// - Returns: Объект User или nil, если данных нет
+    // Загружает данные пользователя из UserDefaults
     func loadUser() -> User? {
         guard let data = defaults.data(forKey: userKey),
               let user = try? JSONDecoder().decode(User.self, from: data) else {
@@ -34,12 +33,10 @@ final class UserStorageService {
         return user
     }
     
-    /// Проверяет, зарегистрирован ли пользователь
     func isUserRegistered() -> Bool {
         return loadUser() != nil
     }
     
-    /// Удаляет данные пользователя из хранилища
     func clearUser() {
         defaults.removeObject(forKey: userKey)
     }
